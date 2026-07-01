@@ -1,9 +1,11 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
+import About from "./components/About";
+import Marquee from "./components/Marquee";
 import Education from "./components/Education";
-import Awards from "./components/Awards";
+import Experience from "./components/Experience";
+import Work from "./components/Work";
+import Recognition from "./components/Recognition";
 import Contact from "./components/Contact";
 
 export default function Home() {
@@ -12,10 +14,12 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Projects />
-        <Experience />
+        <About />
+        <Marquee />
         <Education />
-        <Awards />
+        <Experience />
+        <Work />
+        <Recognition />
         <Contact />
       </main>
     </>

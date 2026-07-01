@@ -1,65 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { fadeUpSlow, staggerSlow } from "./variants";
-
-const education = [
-  {
-    degree: "BSc Data Science & Engineering",
-    institution: "Universidad Carlos III de Madrid (UC3M)",
-    period: "2021 – 2025",
-    details: "GPA 8/10 · TFG 9.2/10",
-  },
-  {
-    degree: "BSc Computer Science (Exchange)",
-    institution: "University of California",
-    period: "2023 – 2024",
-    details: "GPA 3.5/4.0",
-  },
-];
+import { education } from "../content";
+import { SectionHeading } from "./SectionHeading";
+import { Reveal } from "./Reveal";
 
 export default function Education() {
   return (
-    <section id="education" className="mx-auto max-w-5xl scroll-mt-20 px-6 py-24">
-      <motion.div
-        variants={staggerSlow}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-80px" }}
-      >
-        <motion.h2
-          variants={fadeUpSlow}
-          className="mb-12 text-2xl font-bold"
-          style={{ color: "#0F172A" }}
-        >
-          Education
-        </motion.h2>
+    <section id="education" className="relative z-[2] mx-auto max-w-5xl scroll-mt-24 px-6 py-24 md:py-32">
+      <SectionHeading index="02" title="Education" kicker="Foundations" />
 
-        <div className="flex flex-col gap-4">
-          {education.map((item) => (
-            <motion.div
-              key={item.institution}
-              variants={fadeUpSlow}
-              style={{
-                background: "#FFFFFF",
-                border: "1px solid #E2E8F0",
-                boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
-              }}
-              className="rounded-xl p-6"
-            >
-              <h3 className="text-base font-semibold" style={{ color: "#0F172A" }}>
-                {item.degree}
-              </h3>
-              <p className="mt-0.5 text-sm font-medium" style={{ color: "#64748B" }}>
-                {item.institution}
-              </p>
-              <p className="mt-1 text-xs" style={{ color: "#64748B" }}>
-                {item.period} · {item.details}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      <div className="border-b border-line">
+        {education.map((item, i) => (
+          <Reveal key={item.institution} delay={i * 0.05} as="article">
+            <div className="grid grid-cols-1 gap-y-3 border-t border-line py-8 md:grid-cols-12 md:gap-x-10 md:py-10">
+              <span className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-terracotta-deep md:col-span-3">
+                {item.period}
+              </span>
+              <div className="md:col-span-9">
+                <h3 className="font-display text-2xl font-medium leading-tight text-ink">
+                  {item.degree}
+                </h3>
+                <p className="mt-1 text-[1rem] text-ink-soft">{item.institution}</p>
+                <p className="mt-2 font-mono text-[0.72rem] uppercase tracking-[0.1em] text-ink-faint">
+                  {item.detail}
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
     </section>
   );
 }
